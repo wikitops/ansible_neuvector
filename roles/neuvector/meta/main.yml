@@ -1,0 +1,9 @@
+---
+
+dependencies:
+
+  - role: neuvector/docker
+    when: orchestrator == "docker"
+
+  - role: neuvector/kubernetes
+    when: orchestrator == "kubernetes"

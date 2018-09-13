@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  remote_user: vagrant
+  become: yes
+  vars:
+    orchestrator: docker
+    docker_users: ["vagrant"]
+    docker_login:
+      username: wikitops
+      password: wikitops
+      email: example@wikitops.io
+  roles:
+    - neuvector

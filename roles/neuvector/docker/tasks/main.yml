@@ -1,0 +1,11 @@
+---
+
+- name: NEUVECTOR DOCKER | Manage Docs container
+  import_tasks: docs.yml
+  when: neuvector_docs.state != 'absent'
+  tags: update-neuvector-docker-docs
+
+- name: NEUVECTOR DOCKER | Manage Allinone container
+  import_tasks: allinone.yml
+  when: neuvector_allinone.state != 'absent'
+  tags: update-neuvector-docker-allinone

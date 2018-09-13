@@ -1,0 +1,8 @@
+---
+
+- name: NEUVECTOR DOCKER | Manage Docs container
+  docker_container:
+    state: "{{ neuvector_docs.state }}"
+    name: "{{ neuvector_docs.name }}"
+    image: "{{ neuvector_docs.image }}"
+    published_ports: "{{ neuvector_docs.exposed_ports }}"

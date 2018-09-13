@@ -1,0 +1,34 @@
+---
+
+###
+# GENERAL
+###
+
+# Default orchestrator
+orchestrator: docker
+
+###
+# NEUVECTOR
+###
+
+# Neuvector Docs
+neuvector_docs:
+  state: started
+  name: docs
+  image: neuvector/docs
+  exposed_ports:
+    - 80:80
+
+# Neuvector Allinone
+neuvector_allinone:
+  state: started
+  name: allinone
+  image: neuvector/allinone
+  privileged: yes
+  exposed_ports:
+    - 18300:18300
+    - 18301:18301
+    - 18400:18400
+    - 18401:18401
+    - 18301:18301/udp
+    - 8443:8443

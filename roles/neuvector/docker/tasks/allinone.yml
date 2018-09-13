@@ -1,0 +1,17 @@
+---
+
+- name: NEUVECTOR DOCKER | Manage Allinone container
+  docker_container:
+    state: "{{ neuvector_allinone.state }}"
+    name: "{{ neuvector_allinone.name }}"
+    image: "{{ neuvector_allinone.image }}"
+    privileged: "{{ neuvector_allinone.privileged }}"
+    env:
+      CLUSTER_JOIN_ADDR: "{{ inventory_hostname }}"
+      MANAGER_SSL: off
+    published_ports: "{{ neuvector_allinone.exposed_ports }}"
+    volumes:
+      - /data/neuvector/:/var/neuvector
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /sys/fs/cgroup:/host/cgroup:ro
+      - /proc:/host/proc:ro
