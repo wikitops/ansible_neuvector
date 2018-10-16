@@ -57,7 +57,7 @@ This playbook has some dependencies to other roles that must be downloaded befor
 ansible-galaxy install -r requirements.yml
 ```
 
-This command should download the Docker role from Wikitops Github account to the local role path.
+This command should download the Docker, Epel and Pip roles from Wikitops Github account to the local role path.
 
 To deploy NeuVector on Vagrant, you just have to run the Ansible playbook neuvector.yml with this command :
 
