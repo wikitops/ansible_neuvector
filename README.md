@@ -1,6 +1,6 @@
-# Ansible : Playbook NeuVector
+# Ansible : Playbook Neuvector
 
-The aim of this project is to deploy a simple NeuVector instance on Vagrant.
+The aim of this project is to deploy Neuvector on Linux Vagrant instance.
 
 ## Getting Started
 
@@ -12,12 +12,12 @@ What things you need to run this Ansible playbook :
 
 *   [Vagrant](https://www.vagrantup.com/docs/installation/) must be installed on your computer
 *   Update the Vagrant file based on your computer (CPU, memory), if needed
-*   You must have download the ubuntu Xenial64 vagrant box :
+*   Update the operating system to deploy in the Vagrant file (default: Ubuntu)
+*   Download the Ansible requirements:
 
+```bash
+$ ansible-galaxy install -r requirements.yml
 ```
-vagrant box add https://app.vagrantup.com/ubuntu/boxes/xenial64
-```
-*   You need to have a valid Neuvector licence
 
 ### Usage
 
@@ -25,23 +25,17 @@ A good point with Vagrant is that you can create, update and destroy all archite
 
 Be aware that you need to be in the Vagrant directory to be able to run the commands.
 
-#### Build Environment
+#### Deployment
 
-Vagrant needs to init the project to run and build it :
+To deploy Neuvector on Vagrant instances, just run this command :
 
-```
-vagrant up
-```
-
-After build, you can check which virtual machine Vagrant has created :
-
-```
-vagrant status
+```bash
+$ vagrant up
 ```
 
-If all run like it is expected, you should see something like this :
+If everything run as expected, you should be able to list the virtual machine created :
 
-```
+```bash
 $ vagrant status
 
 Current machine states:
@@ -49,32 +43,44 @@ Current machine states:
 neuvector01                   running (virtualbox)
 ```
 
-#### Deployment
-
-This playbook has some dependencies to other roles that must be downloaded before executing the playbook :
-
-```
-ansible-galaxy install -r requirements.yml
-```
-
-This command should download the Docker, Epel and Pip roles from Wikitops Github account to the local role path.
-
-To deploy NeuVector on Vagrant, you just have to run the Ansible playbook neuvector.yml with this command :
-
-```
-ansible-playbook neuvector.yml
-```
-
-If all run like it is expected, you should access :
+If everything run has expected, you should access :
 *   The NeuVector Docs interface : http://10.0.4.81/
 *   The NeuVector Console interface : https://10.0.4.81:8443/
 
 #### Destroy
 
-To destroy on what Vagrant has created, just run this command :
+To destroy the Vagrant resources created, just run this command :
 
+```bash
+$ vagrant destroy
 ```
-vagrant destroy
+
+### How-To
+
+This section list some simple command to use and manage the playbook and the Vagrant hosts.
+
+#### Update with Ansible
+
+To update the Neuvector configuration with Ansible, you just have to run the Ansible playbook neuvector.yml with this command :
+
+```bash
+$ ansible-playbook neuvector.yml
+```
+
+#### Update with Vagrant
+
+To update the Neuvector configuration with Vagrant, you just have to run provisioning part of the Vagrant file :
+
+```bash
+$ vagrant provision
+```
+
+#### Connect to Vagrant instance
+
+To be able to connect to a Vagrant instance, you should use the CLI which is configured to automatically use the default SSH key :
+
+```bash
+$ vagrant ssh neuvector01
 ```
 
 ## Author

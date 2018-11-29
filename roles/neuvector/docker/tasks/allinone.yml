@@ -7,7 +7,7 @@
     image: "{{ neuvector_allinone.image }}"
     privileged: "{{ neuvector_allinone.privileged }}"
     env:
-      CLUSTER_JOIN_ADDR: "{{ inventory_hostname }}"
+      CLUSTER_JOIN_ADDR: "{{ hostvars[inventory_hostname].ip }}"
       MANAGER_SSL: off
     published_ports: "{{ neuvector_allinone.exposed_ports }}"
     volumes:
